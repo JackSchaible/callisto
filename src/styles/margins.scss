@@ -1,0 +1,33 @@
+@import "./settings.scss";
+
+@for $i from 0 through $max-size {
+	.m-#{$i} {
+		margin: ($i/4) * $base-unit;
+	}
+
+	.mt-#{$i} {
+		margin-top: ($i/4) * $base-unit;
+	}
+
+	.mr-#{$i} {
+		margin-right: ($i/4) * $base-unit;
+	}
+
+	.mb-#{$i} {
+		margin-bottom: ($i/4) * $base-unit;
+	}
+
+	.ml-#{$i} {
+		margin-left: ($i/4) * $base-unit;
+	}
+
+	.mx-#{$i} {
+		margin-left: ($i/4) * $base-unit;
+		margin-right: ($i/4) * $base-unit;
+	}
+
+	.my-#{$i} {
+		margin-top: ($i/4) * $base-unit;
+		margin-bottom: ($i/4) * $base-unit;
+	}
+}

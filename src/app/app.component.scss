@@ -1,0 +1,20 @@
+@import "../styles/settings.scss";
+
+.container {
+	max-width: 960px;
+	margin: 0 auto;
+
+	.recipe {
+		border: 1px solid $secondary;
+		border-radius: $base-unit;
+		.stats {
+			div {
+				border-radius: $base-unit;
+				background: $background-2;
+				.icon {
+					min-width: 35px;
+				}
+			}
+		}
+	}
+}

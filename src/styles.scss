@@ -1,0 +1,40 @@
+@import "./styles/settings.scss";
+@import "./styles/margins.scss";
+@import "./styles/padding.scss";
+@import "./styles/display.scss";
+@import "./styles/flex.scss";
+@import "./styles/forms.scss";
+@import "./styles/fonts.scss";
+
+body {
+	background-color: $background;
+}
+
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button {
+	padding: $base-unit $base-unit * 2;
+	background-color: rgba(0, 0, 0, 0);
+	border: solid 2px $primary;
+	color: $primary;
+	border-radius: $base-unit;
+	outline: none;
+
+	&:focus {
+		border-width: 4px;
+		padding: ($base-unit - 2) (($base-unit * 2) - 2);
+	}
+
+	&[disabled] {
+		color: $primary-disabled;
+		border-color: $primary-disabled;
+		cursor: no-drop;
+	}
+}

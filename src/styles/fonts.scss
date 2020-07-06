@@ -1,0 +1,22 @@
+@import "./settings.scss";
+
+h1 {
+	color: $primary;
+}
+
+p,
+span {
+	color: $secondary;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-primary {
+	color: $primary;
+}
+
+.text-disabled {
+	color: $primary-disabled;
+}

@@ -1,0 +1,33 @@
+@import "./settings.scss";
+
+@for $i from 0 through $max-size {
+	.p-#{$i} {
+		padding: ($i/4) * $base-unit;
+	}
+
+	.pt-#{$i} {
+		padding-top: ($i/4) * $base-unit;
+	}
+
+	.pr-#{$i} {
+		padding-right: ($i/4) * $base-unit;
+	}
+
+	.pb-#{$i} {
+		padding-bottom: ($i/4) * $base-unit;
+	}
+
+	.pl-#{$i} {
+		padding-left: ($i/4) * $base-unit;
+	}
+
+	.px-#{$i} {
+		padding-left: ($i/4) * $base-unit;
+		padding-right: ($i/4) * $base-unit;
+	}
+
+	.py-#{$i} {
+		padding-top: ($i/4) * $base-unit;
+		padding-bottom: ($i/4) * $base-unit;
+	}
+}
