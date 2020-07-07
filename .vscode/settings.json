@@ -1,0 +1,7 @@
+{
+	"beautify.language": {
+		"js": [],
+		"css": [],
+		"html": ["htm", "html"]
+	}
+}

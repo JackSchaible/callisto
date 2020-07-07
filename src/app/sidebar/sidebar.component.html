@@ -1,0 +1,27 @@
+<div class="sidebar p-8">
+	<h2>My Recipes</h2>
+
+	<mat-accordion>
+		<mat-expansion-panel [expanded]="false">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Add a Recipe
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+
+			<app-new-form></app-new-form>
+		</mat-expansion-panel>
+
+		<mat-expansion-panel [expanded]="true">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					All Recipes
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+
+			<ng-container *ngFor="let template of store.data.templates">
+				<ng-container *ngTemplateOutlet="templateTmpl; context: { $implicit: template }"></ng-container>
+			</ng-container>
+		</mat-expansion-panel>
+	</mat-accordion>
+</div>

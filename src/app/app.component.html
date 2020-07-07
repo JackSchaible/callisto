@@ -2,35 +2,10 @@
 	<h1>Factory Game Calculator</h1>
 </div>
 
-<div class="container">
-	<ng-container *ngFor="let recipe of recipes">
-		<ng-container
-			*ngTemplateOutlet="recipeTmpl; context: { $implicit: recipe }"
-		></ng-container>
-	</ng-container>
+<app-sidebar class="ml-8"></app-sidebar>
 
-	<div class="mt-4">
-		<p>Add A Recipe:</p>
-
-		<div class="d-flex align-center">
-			<mat-form-field appearance="standard" class="flex-grow">
-				<input
-					matInput
-					[(ngModel)]="currentRecipeName"
-					placeholder="Name"
-				/>
-			</mat-form-field>
-
-			<button
-				[disabled]="!currentRecipeName"
-				class="ml-2"
-				(click)="addItem()"
-			>
-				<i class="fas fa-plus-octagon"></i>
-				<span class="ml-4">Add</span>
-			</button>
-		</div>
-	</div>
+<div class="container" *ngIf="schematic">
+	<ng-container *ngTemplateOutlet="recipeTmpl; context: { $implicit: schematic }"></ng-container>
 </div>
 
 <ng-template #recipeTmpl let-recipe>
@@ -38,30 +13,112 @@
 		<p>
 			<strong>{{ recipe.name }}</strong>
 		</p>
-		<div class="d-flex ml-4 stats">
-			<div class="text-center py-4 px-6 mr-4">
+
+		<!--Target items/s-->
+		<div class="d-ib text-center py-4 px-6 mr-4 highlight">
+			<div class="icon">
+				<i title="Target number of items produced per second" class="fas fa-2x fa-bullseye-arrow text-primary"></i>
+			</div>
+
+			<div class="mt-2">
+				<span>x<input [(ngModel)]="recipe.targetPerSecond" class="ml-2 large-number" (keyup)="calculate(recipe)" /></span>
+			</div>
+		</div>
+
+		<div class="d-flex align-center">
+			<div class="highlight d-ib py-8 px-16 text-center my-4">
+				<i class="fas fa-3x fa-industry-alt text-primary"></i>
+				<div>
+					<span>{{ recipe.unitsRequired }}</span>
+				</div>
+			</div>
+			<span class="mx-8">=</span>
+			<span class="fraction text-center">
+				<div>
+					<span>{{ recipe.targetPerSecond }}</span>
+					<span class="mx-4">x</span>
+					<span>{{ recipe.craftingSpeedInSeconds }}</span>
+					<span class="mx-4">x</span>
+					<span>{{ recipe.speedModifier / 100 }}</span>
+				</div>
+				<div>
+					<span>{{ recipe.itemsProduced }}</span>
+				</div>
+			</span>
+		</div>
+
+		<div class="d-flex stats ml-8">
+			<!--Items/build-->
+			<div class="text-center py-4 px-6 mr-4 highlight">
 				<div class="icon">
-					<i
-						title="Number of items produced per build"
-						class="fas fa-2x fa-hashtag text-primary"
-					></i>
+					<i title="Number of items produced per build" class="fas fa-2x fa-hashtag text-primary"></i>
 				</div>
 
 				<div class="mt-2">
-					<span>{{ recipe.itemsProduced }}</span>
+					<span>x<input [(ngModel)]="recipe.itemsProduced" class="ml-2 single-number" (keyup)="calculate(recipe)" /></span>
 				</div>
 			</div>
 
-			<div class="text-center py-4 px-6 mr-4">
+			<!--s/item-->
+			<div class="text-center py-4 px-6 mr-4 highlight">
 				<div class="icon">
-					<i
-						title="Number of seconds to build this item"
-						class="fas fa-2x fa-shipping-timed text-primary"
-					></i>
+					<i title="Number of seconds to build this item" class="fas fa-2x fa-shipping-timed text-primary"></i>
 				</div>
 
 				<div class="mt-2">
-					<span>{{ recipe.craftingSpeedPerSecond }}</span>
+					<input [(ngModel)]="recipe.craftingSpeedInSeconds" class="decimal-number mr-2" (keyup)="calculate(recipe)" /><span>s</span>
+				</div>
+			</div>
+
+			<!--speed modify %-->
+			<div class="text-center py-4 px-6 mr-4 highlight">
+				<div class="icon">
+					<i title="Percentage modification of crafting speed" class="fas fa-2x fa-tachometer-alt-fastest text-primary"></i>
+				</div>
+
+				<div class="mt-2">
+					<input [(ngModel)]="recipe.speedModifier" class="large-number mr-2" (keyup)="calculate(recipe)" /><span>%</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="subitems ml-8">
+			<span>Components</span>
+			<ng-container *ngFor="let component of recipe.components">
+				<ng-container *ngTemplateOutlet="recipeTmpl; context: { $implicit: component }"></ng-container>
+			</ng-container>
+		</div>
+	</div>
+</ng-template>
+
+<ng-template #templateTmpl let-template>
+	<div class="template">
+		<strong>{{ template.name }}</strong>
+		<div class="d-flex justify-between mt-4">
+			<div class="d-flex flex-column text-center">
+				<div>
+					<i class="fas fa-hashtag text-primary"></i>
+				</div>
+				<div>
+					<span>X{{ template.itemsProduced }}</span>
+				</div>
+			</div>
+
+			<div class="d-flex flex-column text-center">
+				<div>
+					<i class="fas fa-shipping-timed text-primary"></i>
+				</div>
+				<div>
+					<span>{{ template.craftingSpeedInSeconds }}s</span>
+				</div>
+			</div>
+
+			<div class="d-flex flex-column text-center">
+				<div>
+					<i class="fas fa-microchip text-primary"></i>
+				</div>
+				<div>
+					<span>{{ template.components.length }}</span>
 				</div>
 			</div>
 		</div>

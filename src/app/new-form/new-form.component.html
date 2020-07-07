@@ -1,0 +1,56 @@
+<form [formGroup]="form">
+	<div>
+		<mat-form-field appearance="standard">
+			<input matInput formControlName="name" placeholder="Name" />
+		</mat-form-field>
+	</div>
+
+	<div>
+		<mat-form-field appearance="standard">
+			<i matPrefix class="fas fa-hashtag text-primary"></i>
+			<input matInput formControlName="number" placeholder="Number Produced per Craft" class="icon-input" />
+		</mat-form-field>
+	</div>
+
+	<div>
+		<mat-form-field appearance="standard">
+			<i matPrefix class="fas fa-shipping-timed text-primary"></i>
+			<input matInput formControlName="speed" placeholder="Crafting Speed (in s)" class="icon-input" />
+		</mat-form-field>
+	</div>
+
+	<p class="ml-2"><i class="fas fa-microchip text-primary mr-4"></i> Components</p>
+
+	<mat-chip-list>
+		<mat-chip *ngFor="let component of components" (click)="removeComponent(component)">
+			{{component.recipe.name}} x {{component.numberRequired}}
+			<i class="fas fa-times"></i>
+		</mat-chip>
+	</mat-chip-list>
+
+	<div class="d-flex components" [class.mt-6]="components.length > 0" formGroupName="newComponent">
+		<mat-form-field appearance="standard">
+			<input matInput formControlName="name" placeholder="Name" [matAutocomplete]="auto" />
+		</mat-form-field>
+
+		<mat-autocomplete #auto="matAutocomplete">
+			<mat-option *ngFor="let template of filteredOptions | async" [value]="template.name">
+				{{ template.name }}
+			</mat-option>
+		</mat-autocomplete>
+
+		<mat-form-field appearance="standard">
+			<input matInput formControlName="number" placeholder="Number" />
+			<button matSuffix class="suffix-button" (click)="addComponent()" type="button">
+				<i class="fas fa-plus-square"></i>
+			</button>
+		</mat-form-field>
+	</div>
+
+	<div class="d-flex justify-end">
+		<button [disabled]="!this.name.valid || !this.number.valid || !this.speed.valid" class="mt-2" (click)="addItem()" type="button">
+			<i class="fas fa-plus-octagon"></i>
+			<span class="ml-4">Add</span>
+		</button>
+	</div>
+</form>

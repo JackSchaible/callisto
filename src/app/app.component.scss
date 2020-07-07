@@ -1,20 +1,45 @@
 @import "../styles/settings.scss";
+@import "../styles/borders.scss";
 
 .container {
 	max-width: 960px;
 	margin: 0 auto;
 
 	.recipe {
-		border: 1px solid $secondary;
-		border-radius: $base-unit;
-		.stats {
-			div {
-				border-radius: $base-unit;
-				background: $background-2;
-				.icon {
-					min-width: 35px;
-				}
-			}
+		@include border;
+
+		.target-per-second {
+			max-width: 125px;
 		}
+	}
+}
+
+app-sidebar {
+	position: fixed;
+}
+
+.template {
+	@include border;
+}
+
+.highlight {
+	border-radius: $base-unit;
+	background: $background-2;
+
+	div {
+		.icon {
+			min-width: 35px;
+		}
+	}
+
+	input {
+		background-color: rgba(0, 0, 0, 0);
+		@include border;
+	}
+}
+
+.fraction {
+	> div:first-child {
+		border-bottom: 1px solid $secondary;
 	}
 }

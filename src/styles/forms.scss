@@ -3,4 +3,22 @@
 input,
 mat-form-field {
 	color: $secondary;
+
+	&.single-number {
+		width: 10px;
+	}
+
+	&.decimal-number {
+		width: 25px;
+	}
+
+	&.large-number {
+		width: 30px;
+	}
+}
+
+.mat-form-field-flex,
+.mat-form-field-infix {
+	border-top: 0 !important;
+	padding-top: 0 !important;
 }

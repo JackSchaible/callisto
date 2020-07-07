@@ -1,7 +1,9 @@
 @import "./settings.scss";
 
-h1 {
-	color: $primary;
+@for $i from 1 through 5 {
+	h#{$i} {
+		color: $primary;
+	}
 }
 
 p,

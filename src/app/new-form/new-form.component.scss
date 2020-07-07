@@ -1,0 +1,13 @@
+@import "../../styles/settings.scss";
+
+form {
+	input.icon-input {
+		margin-left: $base-unit;
+	}
+
+	.components {
+		mat-form-field {
+			max-width: 100px;
+		}
+	}
+}

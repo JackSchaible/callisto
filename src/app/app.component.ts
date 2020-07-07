@@ -1,4 +1,8 @@
+import { StoreService } from './store.service';
+import { IRecipe, IComponent, ITemplate } from './app.models';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { map, startWith, debounceTime } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-root',
@@ -6,55 +10,38 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-	title = 'callisto';
+	constructor(private fb: FormBuilder, public store: StoreService) {}
 
-	public recipes: IRecipe[];
-	public currentRecipeName: string;
+	public editingRecipe: ITemplate;
+	public schematic: IRecipe;
 
 	public ngOnInit(): void {
-		this.recipes = [
-			{
-				name: 'Copper Plates',
-				craftingSpeedPerSecond: 3.2,
-				speedModifier: 1,
-				itemsProduced: 1,
-				desiredRate: 1,
-				unitsRequired: 0,
-				components: [
-					{
-						name: 'Iron Ore',
-						craftingSpeedPerSecond: 0.5,
-						speedModifier: 1,
-						itemsProduced: 1,
-						desiredRate: 1,
-						unitsRequired: 0,
-						components: [],
-					},
-				],
-			},
-		];
-	}
-
-	public addItem(): void {
-		this.recipes.push({
-			name: this.currentRecipeName,
-			craftingSpeedPerSecond: 1,
-			speedModifier: 1,
-			itemsProduced: 1,
-			desiredRate: 1,
-			unitsRequired: 0,
-			components: [],
+		this.store.save({
+			templates: [
+				{
+					name: 'Iron Ore',
+					craftingSpeedInSeconds: 0.5,
+					itemsProduced: 1,
+					components: [],
+				},
+			],
+			schematics: [],
 		});
-		this.currentRecipeName = undefined;
-	}
-}
 
-interface IRecipe {
-	name: string;
-	craftingSpeedPerSecond: number;
-	itemsProduced: number;
-	speedModifier: number;
-	desiredRate: number;
-	unitsRequired: number;
-	components: IRecipe[];
+		this.editingRecipe = {
+			craftingSpeedInSeconds: undefined,
+			itemsProduced: undefined,
+			name: undefined,
+			components: [],
+		};
+	}
+
+	public calculate(recipe: IRecipe): void {
+		recipe.unitsRequired = Math.ceil(
+			(recipe.targetPerSecond *
+				recipe.template.craftingSpeedInSeconds *
+				(recipe.speedModifier / 100)) /
+				recipe.template.itemsProduced
+		);
+	}
 }
