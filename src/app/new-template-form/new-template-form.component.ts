@@ -1,4 +1,4 @@
-import { ITemplate, IComponent } from './../app.models';
+import { ITemplate, IComponent } from '../app.models';
 import {
 	FormBuilder,
 	FormGroup,
@@ -7,17 +7,17 @@ import {
 	AbstractControl,
 	ValidationErrors,
 } from '@angular/forms';
-import { StoreService } from './../store.service';
+import { StoreService } from '../store.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { debounceTime, startWith, map } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-new-form',
-	templateUrl: './new-form.component.html',
-	styleUrls: ['./new-form.component.scss'],
+	templateUrl: './new-template-form.component.html',
+	styleUrls: ['./new-template-form.component.scss'],
 })
-export class NewFormComponent implements OnInit {
+export class NewTemplateFormComponent implements OnInit {
 	private numRegex = /\d+(\.\d+)?/g;
 	public name = new FormControl('', [Validators.required]);
 	public number = new FormControl('', [

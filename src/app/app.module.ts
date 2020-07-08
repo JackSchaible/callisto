@@ -1,4 +1,4 @@
-import { NewFormComponent } from './new-form/new-form.component';
+import { NewTemplateFormComponent } from './new-template-form/new-template-form.component';
 import { NumericDirective } from './numeric.directive';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -14,9 +14,18 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { SchematicComponent } from './schematic/schematic.component';
+import { NewSchematicFormComponent } from './new-schematic-form/new-schematic-form.component';
 
 @NgModule({
-	declarations: [AppComponent, NumericDirective, NewFormComponent, SidebarComponent],
+	declarations: [
+		AppComponent,
+		NumericDirective,
+		NewTemplateFormComponent,
+		SidebarComponent,
+		SchematicComponent,
+		NewSchematicFormComponent,
+	],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,

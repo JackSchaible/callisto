@@ -1,28 +1,47 @@
 <div class="sidebar p-8">
-	<h2>My Recipes</h2>
+	<mat-accordion>
+		<mat-expansion-panel [expanded]="true">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Templates
+				</mat-panel-title>
+			</mat-expansion-panel-header>
 
-	<mat-expansion-panel [expanded]="true">
-		<mat-expansion-panel-header>
-			<mat-panel-title>
-				Add a Recipe
-			</mat-panel-title>
-		</mat-expansion-panel-header>
+			<h2>Add a Template</h2>
+			<app-new-form></app-new-form>
 
-		<app-new-form></app-new-form>
-	</mat-expansion-panel>
+			<hr class="my-12" />
 
-	<mat-expansion-panel [expanded]="true">
-		<mat-expansion-panel-header>
-			<mat-panel-title>
-				All Recipes
-			</mat-panel-title>
-		</mat-expansion-panel-header>
+			<h2>All Template</h2>
+			<ng-container *ngFor="let template of store.data.templates">
+				<ng-container *ngTemplateOutlet="templateTmpl; context: { $implicit: template }"></ng-container>
+			</ng-container>
+		</mat-expansion-panel>
 
-		<ng-container *ngFor="let template of store.data.templates">
-			<ng-container *ngTemplateOutlet="templateTmpl; context: { $implicit: template }"></ng-container>
-		</ng-container>
-	</mat-expansion-panel>
+		<mat-expansion-panel [expanded]="false">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Schematics
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+
+			<h2>Add a Schematics</h2>
+
+			<hr class="my-12" />
+
+			<h2>All Schematics</h2>
+			<ng-container *ngIf="!store.data.schematics || store.data.schematics.length === 0">
+				<p>No Schematics to show. Add one?</p>
+			</ng-container>
+			<ng-container *ngFor="let schematic of store.data.schematics">
+				<ng-container *ngTemplateOutlet="schemTmpl; context: { $implicit: schematic }"></ng-container>
+			</ng-container>
+		</mat-expansion-panel>
+
+	</mat-accordion>
 </div>
+
+<ng-template #schemTmpl let-schem></ng-template>
 
 <ng-template #templateTmpl let-template>
 	<div class="template">
