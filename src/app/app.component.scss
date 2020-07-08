@@ -18,8 +18,13 @@ app-sidebar {
 	position: fixed;
 }
 
-.template {
-	@include border;
+header {
+	h1 {
+		color: $background;
+		margin: 0 !important;
+	}
+
+	background-color: $primary-2;
 }
 
 .highlight {

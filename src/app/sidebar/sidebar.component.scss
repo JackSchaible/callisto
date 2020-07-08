@@ -1,6 +1,15 @@
 @import "../../styles/settings.scss";
+@import "../../styles/borders.scss";
 
 .sidebar {
 	background-color: $background-2;
 	border-radius: $base-unit;
+
+	mat-expansion-panel {
+		margin-top: $base-unit * 2;
+	}
+}
+
+.template {
+	@include border;
 }

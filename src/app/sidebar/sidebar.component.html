@@ -1,27 +1,59 @@
 <div class="sidebar p-8">
 	<h2>My Recipes</h2>
 
-	<mat-accordion>
-		<mat-expansion-panel [expanded]="false">
-			<mat-expansion-panel-header>
-				<mat-panel-title>
-					Add a Recipe
-				</mat-panel-title>
-			</mat-expansion-panel-header>
+	<mat-expansion-panel [expanded]="true">
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				Add a Recipe
+			</mat-panel-title>
+		</mat-expansion-panel-header>
 
-			<app-new-form></app-new-form>
-		</mat-expansion-panel>
+		<app-new-form></app-new-form>
+	</mat-expansion-panel>
 
-		<mat-expansion-panel [expanded]="true">
-			<mat-expansion-panel-header>
-				<mat-panel-title>
-					All Recipes
-				</mat-panel-title>
-			</mat-expansion-panel-header>
+	<mat-expansion-panel [expanded]="true">
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				All Recipes
+			</mat-panel-title>
+		</mat-expansion-panel-header>
 
-			<ng-container *ngFor="let template of store.data.templates">
-				<ng-container *ngTemplateOutlet="templateTmpl; context: { $implicit: template }"></ng-container>
-			</ng-container>
-		</mat-expansion-panel>
-	</mat-accordion>
+		<ng-container *ngFor="let template of store.data.templates">
+			<ng-container *ngTemplateOutlet="templateTmpl; context: { $implicit: template }"></ng-container>
+		</ng-container>
+	</mat-expansion-panel>
 </div>
+
+<ng-template #templateTmpl let-template>
+	<div class="template">
+		<strong>{{ template.name }}</strong>
+		<div class="d-flex justify-between mt-4">
+			<div class="d-flex flex-column text-center">
+				<div>
+					<i class="fas fa-hashtag text-primary"></i>
+				</div>
+				<div>
+					<span>X{{ template.itemsProduced }}</span>
+				</div>
+			</div>
+
+			<div class="d-flex flex-column text-center">
+				<div>
+					<i class="fas fa-shipping-timed text-primary"></i>
+				</div>
+				<div>
+					<span>{{ template.craftingSpeedInSeconds }}s</span>
+				</div>
+			</div>
+
+			<div class="d-flex flex-column text-center">
+				<div>
+					<i class="fas fa-microchip text-primary"></i>
+				</div>
+				<div>
+					<span>{{ template.components.length ? template.components.length : 'none' }}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</ng-template>
