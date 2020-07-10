@@ -16,9 +16,16 @@ button {
 		border-color: $primary-disabled;
 		cursor: no-drop;
 	}
+}
 
-	&.suffix-button {
+mat-form-field {
+	button {
 		border: none;
 		padding: 0;
+
+		&:focus {
+			border-width: 0;
+			padding: 0;
+		}
 	}
 }

@@ -8,14 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SchematicComponent } from './schematic/schematic.component';
 import { NewSchematicFormComponent } from './new-schematic-form/new-schematic-form.component';
+import { NewFactoryFormComponent } from './new-factory-form/new-factory-form.component';
 
 @NgModule({
 	declarations: [
@@ -25,17 +21,13 @@ import { NewSchematicFormComponent } from './new-schematic-form/new-schematic-fo
 		SidebarComponent,
 		SchematicComponent,
 		NewSchematicFormComponent,
+		NewFactoryFormComponent,
 	],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
 		FormsModule,
 		ReactiveFormsModule,
-		MatFormFieldModule,
-		MatInputModule,
-		MatAutocompleteModule,
-		MatChipsModule,
-		MatExpansionModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

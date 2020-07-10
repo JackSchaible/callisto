@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-schematic',
-  templateUrl: './schematic.component.html',
-  styleUrls: ['./schematic.component.scss']
+	selector: 'clst-schematic',
+	templateUrl: './schematic.component.html',
+	styleUrls: ['./schematic.component.scss'],
 })
 export class SchematicComponent implements OnInit {
+	constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+	ngOnInit(): void {}
 }

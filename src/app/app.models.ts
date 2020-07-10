@@ -6,18 +6,24 @@ export interface ITemplate {
 }
 
 export interface IComponent {
-	recipe: ITemplate;
+	template: ITemplate;
 	numberRequired: number;
 }
 
-export interface IRecipe {
-	template: ITemplate;
-	speedModifier: number;
-	unitsRequired: number;
+export interface ISchematic {
+	name: string;
+	template?: ITemplate;
 	targetPerSecond: number;
+	factory: IFactory;
 }
 
 export interface IData {
 	templates: ITemplate[];
-	schematics: IRecipe[];
+	schematics: ISchematic[];
+	factories: IFactory[];
+}
+
+export interface IFactory {
+	name: string;
+	craftingSpeedModifierInPercent: number;
 }

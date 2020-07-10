@@ -1,50 +1,36 @@
 <form [formGroup]="form">
 	<div>
-		<mat-form-field appearance="standard">
-			<input matInput formControlName="name" placeholder="Name" />
-		</mat-form-field>
+		<input formControlName="name" placeholder="Name" />
 	</div>
 
 	<div>
-		<mat-form-field appearance="standard">
-			<i matPrefix class="fas fa-hashtag text-primary"></i>
-			<input matInput formControlName="number" placeholder="Number Produced per Craft" class="icon-input" />
-		</mat-form-field>
+		<i class="fas fa-hashtag text-primary"></i>
+		<input formControlName="number" placeholder="Number Produced per Craft" class="icon-input" />
 	</div>
 
 	<div>
-		<mat-form-field appearance="standard">
-			<i matPrefix class="fas fa-shipping-timed text-primary"></i>
-			<input matInput formControlName="speed" placeholder="Crafting Speed (in s)" class="icon-input" />
-		</mat-form-field>
+		<i class="fas fa-shipping-timed text-primary"></i>
+		<input formControlName="speed" placeholder="Crafting Speed (in s)" class="icon-input" />
 	</div>
 
 	<p class="ml-2"><i class="fas fa-microchip text-primary mr-4"></i> Components</p>
 
-	<mat-chip-list>
-		<mat-chip *ngFor="let component of components" (click)="removeComponent(component)">
+	<div class="pills">
+		<div *ngFor="let component of components" (click)="removeComponent(component)">
 			{{component.recipe.name}} x {{component.numberRequired}}
 			<i class="fas fa-times"></i>
-		</mat-chip>
-	</mat-chip-list>
+		</div>
+	</div>
 
 	<div class="d-flex components" [class.mt-6]="components.length > 0" formGroupName="newComponent">
-		<mat-form-field appearance="standard">
-			<input matInput formControlName="name" placeholder="Name" [matAutocomplete]="auto" />
-		</mat-form-field>
+		<input formControlName="name" placeholder="Name" />
 
-		<mat-autocomplete #auto="matAutocomplete">
-			<mat-option *ngFor="let template of filteredOptions | async" [value]="template.name">
-				{{ template.name }}
-			</mat-option>
-		</mat-autocomplete>
-
-		<mat-form-field appearance="standard">
-			<input matInput formControlName="number" placeholder="Number" />
-			<button matSuffix class="suffix-button" (click)="addComponent()" type="button">
+		<div>
+			<input formControlName="number" placeholder="Number" />
+			<button (click)="addComponent()" type="button">
 				<i class="fas fa-plus-square"></i>
 			</button>
-		</mat-form-field>
+		</div>
 	</div>
 
 	<div class="d-flex justify-end">

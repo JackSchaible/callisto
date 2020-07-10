@@ -1,4 +1,4 @@
-import { IData, ITemplate } from './app.models';
+import { IData, ITemplate, ISchematic } from './app.models';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 	providedIn: 'root',
 })
 export class StoreService implements OnDestroy {
-	private dataKey: string = 'ss:data';
+	private dataKey: string = 'clst:data';
 
 	public get data(): IData {
 		return this.dataSubject.value;
@@ -25,6 +25,7 @@ export class StoreService implements OnDestroy {
 			this.dataSubject.next({
 				templates: [],
 				schematics: [],
+				factories: [],
 			});
 	}
 
@@ -35,6 +36,13 @@ export class StoreService implements OnDestroy {
 	public addTemplate(template: ITemplate): void {
 		const data = this.dataSubject.value;
 		data.templates.push(template);
+
+		this.save(data);
+	}
+
+	public addSchematic(schematic: ISchematic): void {
+		const data = this.dataSubject.value;
+		data.schematics.push(schematic);
 
 		this.save(data);
 	}

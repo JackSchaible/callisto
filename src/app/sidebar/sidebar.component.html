@@ -1,50 +1,51 @@
 <div class="sidebar p-8">
-	<mat-accordion>
-		<mat-expansion-panel [expanded]="true">
-			<mat-expansion-panel-header>
-				<mat-panel-title>
-					Templates
-				</mat-panel-title>
-			</mat-expansion-panel-header>
+	<div class="expansion-panel">
+		<h2>Templates</h2>
 
-			<h2>Add a Template</h2>
-			<app-new-form></app-new-form>
+		<h3>Add a Template</h3>
+		<clst-new-form></clst-new-form>
 
-			<hr class="my-12" />
+		<hr class="my-12" />
 
-			<h2>All Template</h2>
+		<h3>All Templates ({{ store.data.templates.length }})</h3>
+		<div class="scrollable">
 			<ng-container *ngFor="let template of store.data.templates">
 				<ng-container *ngTemplateOutlet="templateTmpl; context: { $implicit: template }"></ng-container>
 			</ng-container>
-		</mat-expansion-panel>
+		</div>
+	</div>
 
-		<mat-expansion-panel [expanded]="false">
-			<mat-expansion-panel-header>
-				<mat-panel-title>
-					Schematics
-				</mat-panel-title>
-			</mat-expansion-panel-header>
+	<div class="expansion-panel">
+		<h2>Schematics</h2>
 
-			<h2>Add a Schematics</h2>
+		<h3>Add a Schematic</h3>
+		<clst-new-schematic-form></clst-new-schematic-form>
 
-			<hr class="my-12" />
+		<hr class="my-12" />
 
-			<h2>All Schematics</h2>
-			<ng-container *ngIf="!store.data.schematics || store.data.schematics.length === 0">
-				<p>No Schematics to show. Add one?</p>
-			</ng-container>
-			<ng-container *ngFor="let schematic of store.data.schematics">
-				<ng-container *ngTemplateOutlet="schemTmpl; context: { $implicit: schematic }"></ng-container>
-			</ng-container>
-		</mat-expansion-panel>
-
-	</mat-accordion>
+		<h3>All Schematics ({{ store.data.schematics.length }})</h3>
+		<ng-container *ngIf="!store.data.schematics || store.data.schematics.length === 0">
+			<p>No Schematics to show. Add one?</p>
+		</ng-container>
+		<ng-container *ngFor="let schematic of store.data.schematics">
+			<ng-container *ngTemplateOutlet="schemTmpl; context: { $implicit: schematic }"></ng-container>
+		</ng-container>
+	</div>
 </div>
 
-<ng-template #schemTmpl let-schem></ng-template>
+<ng-template #schemTmpl let-schematic>
+	<div class="schematic">
+		<div class="d-flex justify-between">
+			<strong>{{schematic.name}}</strong>
+			<button>
+				<i class="fas fa-2x fa-arrow-square-right"></i>
+			</button>
+		</div>
+	</div>
+</ng-template>
 
 <ng-template #templateTmpl let-template>
-	<div class="template">
+	<div class="template mt-4">
 		<strong>{{ template.name }}</strong>
 		<div class="d-flex justify-between mt-4">
 			<div class="d-flex flex-column text-center">
@@ -74,5 +75,9 @@
 				</div>
 			</div>
 		</div>
+
+		<button class="btn-delete" (click)="deleteTemplate(template)">
+			<i class="fas fa-trash"></i>
+		</button>
 	</div>
 </ng-template>

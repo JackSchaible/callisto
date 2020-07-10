@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, startWith, map } from 'rxjs/operators';
 
 @Component({
-	selector: 'app-new-form',
+	selector: 'clst-new-form',
 	templateUrl: './new-template-form.component.html',
 	styleUrls: ['./new-template-form.component.scss'],
 })
@@ -74,7 +74,7 @@ export class NewTemplateFormComponent implements OnInit {
 
 	public addComponent(): void {
 		const component: IComponent = {
-			recipe: {
+			template: {
 				...this.store.data.templates.find(
 					(recipe: ITemplate) =>
 						recipe.name === this.newComponentName.value

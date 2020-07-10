@@ -1,1 +1,8 @@
-<p>new-schematic-form works!</p>
+<form [formGroup]="form">
+	<div>
+		<input formControlName="name" placeholder="Schema Name" class="icon-input" required />
+		<button (click)="add()">
+			<i class="fas fa-plus-square"></i>
+		</button>
+	</div>
+</form>

@@ -12,4 +12,44 @@
 
 .template {
 	@include border;
+	position: relative;
+
+	.btn-delete {
+		position: absolute;
+		top: $base-unit;
+		right: $base-unit;
+		display: none;
+	}
+
+	&:hover {
+		.btn-delete {
+			display: block;
+		}
+	}
+}
+
+.schematic {
+	button {
+		border: 0;
+		padding: 0;
+	}
+}
+
+.scrollable {
+	max-height: 275px;
+	overflow-y: scroll;
+	padding-right: $base-unit;
+
+	&::-webkit-scrollbar {
+		width: $base-unit / 2;
+	}
+
+	&::-webkit-scrollbar-track {
+		display: none;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $secondary-2;
+		border-radius: $base-unit * 10;
+	}
 }
