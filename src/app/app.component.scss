@@ -19,12 +19,11 @@ clst-sidebar {
 }
 
 header {
-	h1 {
-		color: $background;
-		margin: 0 !important;
-	}
-
 	background-color: $primary-2;
+
+	h1 {
+		font-weight: 500;
+	}
 }
 
 .highlight {

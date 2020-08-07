@@ -3,6 +3,10 @@
 @for $i from 1 through 5 {
 	h#{$i} {
 		color: $primary;
+
+		&.text-secondary {
+			color: $secondary;
+		}
 	}
 }
 
@@ -17,6 +21,18 @@ span {
 
 .text-primary {
 	color: $primary;
+}
+
+.text-secondary {
+	color: $secondary;
+}
+
+.text-bg {
+	color: $background;
+}
+
+.text-bg-2 {
+	color: $background-2;
 }
 
 .text-disabled {

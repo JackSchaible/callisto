@@ -1,3 +1,4 @@
+import { ClstCommonModule } from './common/common.module';
 import { NewTemplateFormComponent } from './new-template-form/new-template-form.component';
 import { NumericDirective } from './numeric.directive';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +13,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { SchematicComponent } from './schematic/schematic.component';
 import { NewSchematicFormComponent } from './new-schematic-form/new-schematic-form.component';
 import { NewFactoryFormComponent } from './new-factory-form/new-factory-form.component';
+import { CollapseComponent } from './collapse/collapse.component';
 
 @NgModule({
 	declarations: [
@@ -22,6 +24,7 @@ import { NewFactoryFormComponent } from './new-factory-form/new-factory-form.com
 		SchematicComponent,
 		NewSchematicFormComponent,
 		NewFactoryFormComponent,
+		CollapseComponent,
 	],
 	imports: [
 		BrowserModule,

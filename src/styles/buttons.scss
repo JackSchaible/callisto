@@ -1,20 +1,45 @@
 button {
-	padding: $base-unit $base-unit * 2;
+	padding: $base-unit * 2;
 	background-color: rgba(0, 0, 0, 0);
 	border: solid 2px $primary;
 	color: $primary;
 	border-radius: $base-unit;
 	outline: none;
+	cursor: pointer;
 
 	&:focus {
 		border-width: 4px;
 		padding: ($base-unit - 2) (($base-unit * 2) - 2);
 	}
 
+	&:hover {
+		border-color: $secondary;
+		color: $secondary;
+	}
+
 	&[disabled] {
 		color: $primary-disabled;
 		border-color: $primary-disabled;
 		cursor: no-drop;
+	}
+
+	&.input-suffix {
+		border: none;
+		padding: $base-unit * 2.25;
+		background-color: $primary;
+		color: $background;
+
+		&:hover {
+			background-color: $secondary;
+		}
+
+		&:active {
+			background-color: $primary;
+		}
+
+		&:focus {
+			background-color: $secondary-2;
+		}
 	}
 }
 

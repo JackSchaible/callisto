@@ -1,16 +1,21 @@
 <form [formGroup]="form">
-	<div>
-		<input formControlName="name" placeholder="Name" />
-	</div>
+	<div class="d-flex">
+		<div class="form-control">
+			<label for="name">Name</label>
+			<input id="name" formControlName="name" />
+		</div>
 
-	<div>
-		<i class="fas fa-hashtag text-primary"></i>
-		<input formControlName="number" placeholder="Number Produced per Craft" class="icon-input" />
-	</div>
+		<div class="form-control mx-2">
+			<i class="fas fa-hashtag text-primary input-prefix"></i>
+			<label for="number">Number Produced per Craft</label>
+			<input id="number" type="number" formControlName="number" class="icon-input" />
+		</div>
 
-	<div>
-		<i class="fas fa-shipping-timed text-primary"></i>
-		<input formControlName="speed" placeholder="Crafting Speed (in s)" class="icon-input" />
+		<div class="form-control">
+			<i class="fas fa-shipping-timed text-primary input-prefix"></i>
+			<label for="speed">Crafting Speed (in s)</label>
+			<input id="speed" type="number" formControlName="speed" class="icon-input" />
+		</div>
 	</div>
 
 	<p class="ml-2"><i class="fas fa-microchip text-primary mr-4"></i> Components</p>
@@ -23,11 +28,16 @@
 	</div>
 
 	<div class="d-flex components" [class.mt-6]="components.length > 0" formGroupName="newComponent">
-		<input formControlName="name" placeholder="Name" />
+		<div class="form-control">
+			<label for="component-name">Name</label>
+			<input id="component-name" formControlName="name" />
+		</div>
 
-		<div>
-			<input formControlName="number" placeholder="Number" />
-			<button (click)="addComponent()" type="button">
+		<div class="form-control">
+			<label for="component-number">Number</label>
+			<input id="component-number" formControlName="number" />
+
+			<button (click)="addComponent();" clstDeselect type="button" class="input-suffix">
 				<i class="fas fa-plus-square"></i>
 			</button>
 		</div>

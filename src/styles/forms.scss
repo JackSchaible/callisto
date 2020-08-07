@@ -1,24 +1,60 @@
 @import "./settings.scss";
 
-input,
-mat-form-field {
-	color: $secondary;
+.form-control {
+	position: relative;
 
-	&.single-number {
-		width: 10px;
+	label {
+		position: absolute;
+		background-color: $background-2;
+		padding: 0 7px;
+		color: $secondary;
+		top: -5px;
+		left: 11px;
+		font-size: $base-unit * 1.5;
 	}
 
-	&.decimal-number {
-		width: 25px;
+	.input-prefix {
+		position: absolute;
+		top: $base-unit * 2;
+		left: $base-unit * 1.75;
 	}
 
-	&.large-number {
-		width: 30px;
+	.input-suffix {
+		position: absolute;
+		top: 0;
+		right: 0;
 	}
-}
 
-.mat-form-field-flex,
-.mat-form-field-infix {
-	border-top: 0 !important;
-	padding-top: 0 !important;
+	.input-prefix ~ input {
+		padding-left: $base-unit * 5;
+		width: $base-unit * 20;
+	}
+
+	input,
+	select,
+	textarea {
+		padding: $base-unit * 2;
+		background: rgba(0, 0, 0, 0);
+		border: 2px solid $primary;
+		border-radius: $base-unit;
+		outline: none;
+		color: $secondary;
+		width: $base-unit * 25;
+
+		&:focus {
+			border-color: $secondary;
+		}
+
+		&.single-number {
+			width: 10px;
+		}
+
+		&.decimal-number {
+			width: 25px;
+		}
+
+		&.large-number {
+			width: 30px;
+		}
+	}
 }
